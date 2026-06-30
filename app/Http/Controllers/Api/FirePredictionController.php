@@ -44,7 +44,8 @@ class FirePredictionController extends Controller
 
         // 3.الاتصال بسيرفر البايثون (الجسر)ق bridge.py
         try {
-            $aiResponse = Http::post('http://127.0.0.1:5000/predict_ai', [
+          $aiUrl = env('AI_BRIDGE_URL', 'http://127.0.0.1:5000');
+$aiResponse = Http::post($aiUrl . '/predict_ai', [
                 'temp'       => $temp,
                 'humidity'   => $humidity,
                 'wind_speed' => $windSpeed,
